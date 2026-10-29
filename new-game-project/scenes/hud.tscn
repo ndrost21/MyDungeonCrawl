@@ -1,0 +1,246 @@
+[gd_scene load_steps=5 format=3 uid="uid://df43k2moxh8y2"]
+
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_hud"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_top"]
+bg_color = Color(0.0862745, 0.101961, 0.137255, 0.95)
+border_width_bottom = 2
+border_color = Color(0.180392, 0.219608, 0.290196, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_modal_win"]
+bg_color = Color(0.0862745, 0.12549, 0.160784, 0.98)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.952941, 0.611765, 0.0705882, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_modal_lose"]
+bg_color = Color(0.141176, 0.0823529, 0.0823529, 0.98)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.905882, 0.298039, 0.235294, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_hud")
+
+[node name="TopBar" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 140)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 140.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_top")
+
+[node name="MarginContainer" type="MarginContainer" parent="TopBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopBar/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxLeft" type="VBoxContainer" parent="TopBar/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="LabelFloor" type="Label" parent="TopBar/MarginContainer/HBoxContainer/VBoxLeft"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.952941, 0.772549, 0.294118, 1)
+theme_override_font_sizes/font_size = 22
+text = "Floor 1"
+
+[node name="LabelHP" type="Label" parent="TopBar/MarginContainer/HBoxContainer/VBoxLeft"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "HP: ❤️ ❤️ ❤️"
+
+[node name="VBoxCenter" type="VBoxContainer" parent="TopBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="LabelTitle" type="Label" parent="TopBar/MarginContainer/HBoxContainer/VBoxCenter"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.8, 0.95, 1)
+theme_override_font_sizes/font_size = 18
+text = "DUNGEON CRAWLER"
+horizontal_alignment = 1
+
+[node name="LabelMessage" type="Label" parent="TopBar/MarginContainer/HBoxContainer/VBoxCenter"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_font_sizes/font_size = 16
+text = "Find the elevator down!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="VBoxRight" type="VBoxContainer" parent="TopBar/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="LabelSteps" type="Label" parent="TopBar/MarginContainer/HBoxContainer/VBoxRight"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.8, 0.9, 1)
+theme_override_font_sizes/font_size = 18
+text = "Steps: 0"
+horizontal_alignment = 2
+
+[node name="BtnRestart" type="Button" parent="TopBar/MarginContainer/HBoxContainer/VBoxRight"]
+custom_minimum_size = Vector2(100, 38)
+layout_mode = 2
+size_flags_horizontal = 8
+focus_mode = 0
+theme_override_font_sizes/font_size = 16
+text = "↺ Restart"
+
+[node name="Modals" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VictoryPanel" type="Panel" parent="Modals"]
+visible = false
+custom_minimum_size = Vector2(500, 320)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -160.0
+offset_right = 250.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_modal_win")
+
+[node name="VBox" type="VBoxContainer" parent="Modals/VictoryPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="LabelVictory" type="Label" parent="Modals/VictoryPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.952941, 0.772549, 0.294118, 1)
+theme_override_font_sizes/font_size = 32
+text = "🎉 FLOOR CLEARED! 🎉"
+horizontal_alignment = 1
+
+[node name="LabelSummary" type="Label" parent="Modals/VictoryPanel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "You reached the elevator down!"
+horizontal_alignment = 1
+
+[node name="HBoxButtons" type="HBoxContainer" parent="Modals/VictoryPanel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="BtnNextFloor" type="Button" parent="Modals/VictoryPanel/VBox/HBoxButtons"]
+custom_minimum_size = Vector2(180, 50)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 20
+text = "Descend ❯"
+
+[node name="BtnRestart" type="Button" parent="Modals/VictoryPanel/VBox/HBoxButtons"]
+custom_minimum_size = Vector2(180, 50)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 20
+text = "New Game"
+
+[node name="DefeatPanel" type="Panel" parent="Modals"]
+visible = false
+custom_minimum_size = Vector2(480, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -150.0
+offset_right = 240.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_modal_lose")
+
+[node name="VBox" type="VBoxContainer" parent="Modals/DefeatPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="LabelDefeat" type="Label" parent="Modals/DefeatPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.905882, 0.298039, 0.235294, 1)
+theme_override_font_sizes/font_size = 32
+text = "💀 DEFEATED 💀"
+horizontal_alignment = 1
+
+[node name="LabelSummary" type="Label" parent="Modals/DefeatPanel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "You fell in battle..."
+horizontal_alignment = 1
+
+[node name="BtnTryAgain" type="Button" parent="Modals/DefeatPanel/VBox"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 20
+text = "Try Again ↺"
+
+[connection signal="pressed" from="TopBar/MarginContainer/HBoxContainer/VBoxRight/BtnRestart" to="." method="_on_btn_restart_pressed"]
+[connection signal="pressed" from="Modals/VictoryPanel/VBox/HBoxButtons/BtnNextFloor" to="." method="_on_btn_next_floor_pressed"]
+[connection signal="pressed" from="Modals/VictoryPanel/VBox/HBoxButtons/BtnRestart" to="." method="_on_btn_restart_pressed"]
+[connection signal="pressed" from="Modals/DefeatPanel/VBox/BtnTryAgain" to="." method="_on_btn_restart_pressed"]

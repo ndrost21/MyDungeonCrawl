@@ -1,0 +1,121 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6v2n8moxh4y1"]
+
+[ext_resource type="Script" path="res://scripts/touch_controls.gd" id="1_touch"]
+
+[node name="TouchControls" type="Control"]
+custom_minimum_size = Vector2(300, 260)
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -270.0
+offset_right = 150.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_touch")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Grid" type="Control" parent="CenterContainer"]
+custom_minimum_size = Vector2(250, 250)
+layout_mode = 2
+
+[node name="BtnUp" type="Button" parent="CenterContainer/Grid"]
+custom_minimum_size = Vector2(76, 76)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -38.0
+offset_top = 0.0
+offset_right = 38.0
+offset_bottom = 76.0
+grow_horizontal = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 32
+text = "▲"
+
+[node name="BtnDown" type="Button" parent="CenterContainer/Grid"]
+custom_minimum_size = Vector2(76, 76)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -38.0
+offset_top = -76.0
+offset_right = 38.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_mode = 0
+theme_override_font_sizes/font_size = 32
+text = "▼"
+
+[node name="BtnLeft" type="Button" parent="CenterContainer/Grid"]
+custom_minimum_size = Vector2(76, 76)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 0.0
+offset_top = -38.0
+offset_right = 76.0
+offset_bottom = 38.0
+grow_vertical = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 32
+text = "◀"
+
+[node name="BtnRight" type="Button" parent="CenterContainer/Grid"]
+custom_minimum_size = Vector2(76, 76)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -76.0
+offset_top = -38.0
+offset_right = 0.0
+offset_bottom = 38.0
+grow_horizontal = 0
+grow_vertical = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 32
+text = "▶"
+
+[node name="BtnWait" type="Button" parent="CenterContainer/Grid"]
+custom_minimum_size = Vector2(76, 76)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.0
+offset_top = -38.0
+offset_right = 38.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 28
+text = "⏳"
+
+[connection signal="pressed" from="CenterContainer/Grid/BtnUp" to="." method="_on_btn_up_pressed"]
+[connection signal="pressed" from="CenterContainer/Grid/BtnDown" to="." method="_on_btn_down_pressed"]
+[connection signal="pressed" from="CenterContainer/Grid/BtnLeft" to="." method="_on_btn_left_pressed"]
+[connection signal="pressed" from="CenterContainer/Grid/BtnRight" to="." method="_on_btn_right_pressed"]
+[connection signal="pressed" from="CenterContainer/Grid/BtnWait" to="." method="_on_btn_wait_pressed"]

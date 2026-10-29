@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://bq7xk8pvm1o4y"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="2_mgr"]
+[ext_resource type="PackedScene" path="res://scenes/hud.tscn" id="3_hud"]
+[ext_resource type="PackedScene" path="res://scenes/grid_view.tscn" id="4_grid"]
+[ext_resource type="PackedScene" path="res://scenes/touch_controls.tscn" id="5_touch"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_main")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.054902, 0.0705882, 0.0941176, 1)
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("2_mgr")
+
+[node name="GridCenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 140.0
+offset_bottom = -280.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridView" parent="GridCenterContainer" instance=ExtResource("4_grid")]
+layout_mode = 2
+
+[node name="TouchControls" parent="." instance=ExtResource("5_touch")]
+layout_mode = 1
+
+[node name="HUD" parent="." instance=ExtResource("3_hud")]
+layout_mode = 1
